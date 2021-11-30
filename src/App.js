@@ -11,17 +11,17 @@ import './templates/vendor/fontawesome-free/css/all.min.css';
 function App() {
   return (
     <div className="App">
-        <div id="wrapper">
+        {/* <div id="wrapper"> */}
           <Login />
           {/* <Nav /> 
           <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
               <Top />
               <Dashboard /> 
-              <Bottom /> 
+              <Bottom />
             </div>
           </div> */}
-        </div>
+        {/* </div> */}
     </div>
   );
 }

@@ -19,7 +19,8 @@ function App() {
 
   const onClickLogin = () => {
     console.log('click login button')
-    axios.post('http://work87.wiro.kr/api/rest-auth')
+    axios.post('http://localhost:8001/api/token/', {'username': 'admin', 'password': 'qwer1234'})
+    .then(res => console.log(res))
   }
 
   useEffect(() => {
