@@ -25,7 +25,7 @@ function Nav() {
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Components</span>
                 </a>
 
@@ -46,9 +46,12 @@ function Nav() {
                 </div>
             </li>
             <li class="nav-item">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <Link to="/admin" className="nav-link">
+                    <i class="fas fa-fw fa-cog"></i> 
+                    <span>Admin</span>
+                </Link>
+                   
+                {/* <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
@@ -57,7 +60,7 @@ function Nav() {
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
-                </div>
+                </div> */}
             </li>
             <hr class="sidebar-divider"></hr>
             <div class="sidebar-heading">

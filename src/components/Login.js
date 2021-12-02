@@ -1,16 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { getUser } from '../reducers/user'
+// import { useDispatch } from 'react-redux';
+// import { getUser } from '../reducers/user';
 
 
 function Login() {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [provider, setProvider] = useState('');
-  const dispatch = useDispatch();
+  // const [provider, setProvider] = useState('');
+  // const dispatch = useDispatch();
 
 
   const handleUsername = (e) => {
@@ -35,18 +35,12 @@ function Login() {
   const doLogin = (token) => {
     localStorage.setItem('username', username)
     localStorage.setItem('token', token)
-    dispatch(getUser(2, 10));
-    // console.log(localStorage.getItem('username'))
-    // console.log(localStorage.getItem('token'))
+    document.location.href = '/'
+    // dispatch(getUser(2, 10));
   }
 
   useEffect(() => {
-    // let userId = localStorage.getItem('username')
-    // let token = localStorage.getItem('token')
-
-    // axios.get('http://localhost:8001/api/user')
-    // .then(res => console.log(res))
-    // .catch()
+    
   }, [])
 
   return (
@@ -92,7 +86,7 @@ function Login() {
                                         <a href="index.html" className="btn btn-facebook btn-user btn-block">
                                             <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
-                                    </form> */}
+                                     */}
                                     <hr></hr>
                                     <div className="text-center">
                                     </div>

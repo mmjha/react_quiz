@@ -6,8 +6,8 @@ import './templates/css/sb-admin-2.min.css';
 import './templates/vendor/fontawesome-free/css/all.min.css';
 import './templates/vendor/datatables/dataTables.bootstrap4.min.css';
 
-
 function App() {
+
   const checkLogin = () => {
     if(localStorage.getItem('username') && localStorage.getItem('token')) {
       return true;
