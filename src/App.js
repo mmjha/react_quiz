@@ -1,27 +1,28 @@
 // import logo from './logo.svg';
 import './App.css';
-// import Top from './Top';
-// import Nav from './Nav';
 import Login from './components/Login';
-// import Dashboard from './Dashboard';
-// import Bottom from './Bottom';
+import Pages from './components/Pages';
 import './templates/css/sb-admin-2.min.css';
 import './templates/vendor/fontawesome-free/css/all.min.css';
+import './templates/vendor/datatables/dataTables.bootstrap4.min.css';
+
 
 function App() {
+  const checkLogin = () => {
+    if(localStorage.getItem('username') && localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
   return (
     <div className="App">
-        {/* <div id="wrapper"> */}
-          <Login />
-          {/* <Nav /> 
-          <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-              <Top />
-              <Dashboard /> 
-              <Bottom />
-            </div>
-          </div> */}
-        {/* </div> */}
+      { checkLogin() === false ?
+        <Login />
+        :
+        <div id="wrapper"> 
+          <Pages />
+        </div>
+      }
     </div>
   );
 }

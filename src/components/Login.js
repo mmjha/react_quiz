@@ -1,32 +1,52 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../reducers/user'
 
-function App() {
+
+function Login() {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [provider, setProvider] = useState('');
+  const dispatch = useDispatch();
+
 
   const handleUsername = (e) => {
-    console.log(username)
     setUsername(e.target.value)
   }
 
   const handlePassword = (e) => {
-    console.log(password)
     setPassword(e.target.value)
   }
 
   const onClickLogin = () => {
-    console.log('click login button')
-    axios.post('http://localhost:8001/api/token/', {'username': 'admin', 'password': 'qwer1234'})
-    .then(res => console.log(res))
+    let data = {
+      'username' : username,
+      'password' : password
+    }
+    axios.post('http://localhost:8001/api/token/', data)
+    .then(res => {
+      doLogin(res.data.token)
+    })
+  }
+
+  const doLogin = (token) => {
+    localStorage.setItem('username', username)
+    localStorage.setItem('token', token)
+    dispatch(getUser(2, 10));
+    // console.log(localStorage.getItem('username'))
+    // console.log(localStorage.getItem('token'))
   }
 
   useEffect(() => {
-    axios.get('/')
-    .then(res => console.log(res))
-    .catch()
+    // let userId = localStorage.getItem('username')
+    // let token = localStorage.getItem('token')
+
+    // axios.get('http://localhost:8001/api/user')
+    // .then(res => console.log(res))
+    // .catch()
   }, [])
 
   return (
@@ -90,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;

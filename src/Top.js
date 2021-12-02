@@ -2,15 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 function Top() {
     
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        document.title = `You Clicked ${count} times`;
-    });
-
     return (
         <div className="Top">
-            <button onClick={() => setCount(count + 1)}>Click me</button>
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
