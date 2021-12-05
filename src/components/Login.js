@@ -26,17 +26,23 @@ function Login() {
       'username' : username,
       'password' : password
     }
-    axios.post('http://localhost:8001/api/token/', data)
+    axios.post('http://localhost:8001/api/auth/login/', data)
     .then(res => {
-      doLogin(res.data.token)
+      if(res.status == 200) {
+        doLogin(res.data)
+      }
+      // console.log(res)
     })
   }
 
-  const doLogin = (token) => {
-    localStorage.setItem('username', username)
-    localStorage.setItem('token', token)
-    document.location.href = '/'
-    // dispatch(getUser(2, 10));
+  const doLogin = (data) => {
+    // console.log(data)
+    if( data.access_token && data.refresh_token ) {
+      localStorage.setItem('access_token', data.access_token)
+      localStorage.setItem('refresh_token', data.refresh_token)
+      localStorage.setItem('username', username)
+      document.location.href = '/'
+    }
   }
 
   useEffect(() => {

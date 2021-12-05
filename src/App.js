@@ -9,7 +9,7 @@ import './templates/vendor/datatables/dataTables.bootstrap4.min.css';
 function App() {
 
   const checkLogin = () => {
-    if(localStorage.getItem('username') && localStorage.getItem('token')) {
+    if(localStorage.getItem('username') && localStorage.getItem('access_token')) {
       return true;
     }
     return false;

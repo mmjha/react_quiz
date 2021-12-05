@@ -10,10 +10,10 @@ const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 const GET_USER_FAILURE = "GET_USER_FAILURE";
 
 function getUserApi(params) {
-  let token = localStorage.getItem('token');
-  return axios.get("http://localhost:8001/api/user/", {
+  let token = localStorage.getItem('access_token');
+  return axios.get("http://localhost:8001/api/board/post/", {
     headers: {
-      Authorization: `JWT ${token}`
+      Authorization: `Bearer ${token}`,
     }
   })
 }
