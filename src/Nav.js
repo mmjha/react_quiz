@@ -23,27 +23,26 @@ function Nav() {
                 Interface
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                <Link to='/board' className="nav-link">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Board</span>
+                </Link>
+                {/* <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Components</span>
                 </a>
-
-                {/* <Link to='/board' className="nav-link">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Board</span>
-                </Link> */}
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        {/* <Link to='/board' className="nav-link">
+                        <Link to='/board' className="nav-link">
                             <i class="fas fa-fw fa-cog"></i>
                             <span>Board</span>
-                        </Link>  */}
+                        </Link> 
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                </div>
+                </div> */}
             </li>
             <li class="nav-item">
                 <Link to="/admin" className="nav-link">

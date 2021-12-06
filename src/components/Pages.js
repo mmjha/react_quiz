@@ -18,18 +18,16 @@ const HandleRoutes = () => {
 
 function Pages() {
     return (
-        <div>
-            <div id="wrapper"> 
-                <Router>
-                    <Nav />
+        <div id="wrapper"> 
+            <Router>
+                <Nav />
                 <div id="content-wrapper" class="d-flex flex-column">
-                    <Top />
-                    <div id="content"></div>
-                        <HandleRoutes />
-                        <Bottom />
-                    </div>
-                </Router>
-            </div>
+                <Top />
+                <div id="content"></div>
+                    <HandleRoutes />
+                    <Bottom />
+                </div>
+            </Router>
         </div>
     );
 }

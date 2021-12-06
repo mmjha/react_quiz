@@ -11,10 +11,11 @@ const GET_USER_FAILURE = "GET_USER_FAILURE";
 
 function getUserApi(params) {
   let token = localStorage.getItem('access_token');
-  return axios.get("http://localhost:8001/api/board/post/", {
+  return axios.get("http://localhost:8001/api/user/", {
     headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
+    params : params
   })
 }
 

@@ -19,9 +19,7 @@ function App() {
       { checkLogin() === false ?
         <Login />
         :
-        <div id="wrapper"> 
-          <Pages />
-        </div>
+        <Pages />
       }
     </div>
   );

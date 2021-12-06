@@ -1,12 +1,12 @@
 import produce from 'immer';
 
 // export const LIST = "USER/LIST";
-const GET_USER_REQUEST = "GET_USER_REQUEST";
-const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-const GET_USER_FAILURE = "GET_USER_FAILURE";
+const GET_POST_REQUEST = "GET_POST_REQUEST";
+const GET_POST_SUCCESS = "GET_POST_SUCCESS";
+const GET_POST_FAILURE = "GET_POST_FAILURE";
 
-export const getUser = (page, limit) => ({ 
-  type: GET_USER_REQUEST,
+export const getPost = (page, limit) => ({ 
+  type: GET_POST_REQUEST,
   params: {
     page: page,
     limit: limit
@@ -20,13 +20,13 @@ const initalState = {
   data : {}
 };
 
-const user = (state = initalState, action) => 
+const post = (state = initalState, action) => 
   produce(state, draft => {
     switch (action.type) {
-      case GET_USER_REQUEST:
+      case GET_POST_REQUEST:
         draft.data = action.data
         break;
-      case GET_USER_SUCCESS:
+      case GET_POST_SUCCESS:
         draft.data = action.data
         break;
     default:
@@ -34,4 +34,4 @@ const user = (state = initalState, action) =>
   }
 });
 
-export default user;
+export default post;
