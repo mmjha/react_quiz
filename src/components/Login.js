@@ -28,15 +28,13 @@ function Login() {
     }
     axios.post('http://localhost:8001/api/auth/login/', data)
     .then(res => {
-      if(res.status == 200) {
+      if(res.status === 200) {
         doLogin(res.data)
       }
-      // console.log(res)
     })
   }
 
   const doLogin = (data) => {
-    // console.log(data)
     if( data.access_token && data.refresh_token ) {
       localStorage.setItem('access_token', data.access_token)
       localStorage.setItem('refresh_token', data.refresh_token)

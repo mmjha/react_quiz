@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getPost } from '../reducers/post';
+import ReactPaginate from 'react-paginate';
+import CustomAlert from './modal/customAlert';
+import Page from './View';
 
 function Admin() {
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     // const [data, setData] = useState([]);
+
+
     const dispatch = useDispatch();
     const result = useSelector((state) => state.post.data) || {};
 
     const handlePageChange = (select) => {
         setPage(select.selected + 1)
         dispatch(getPost(select.selected + 1, limit))
+    }
+
+    const handleLimitChange = (select) => {
+        setLimit(select.selected)
+        dispatch(getPost(page, select.selected)) 
+    }
+
+    const handleAlert = () => {
+        CustomAlert();
     }
 
     useEffect(() => {
@@ -50,11 +63,21 @@ function Admin() {
                                             (
                                                 <tr>
                                                 <td>{data.id}</td>
-                                                <Link to="/dashboard"><td>{data.title}({data.comment_count})</td></Link>
+                                                <Link to={{
+                                                    pathname: `/view/${data.id}`,
+                                                    info: {data:data},
+                                                    state: { data : data }
+                                                    }}>
+                                                    <td>{data.title}({data.comment_count})</td>
+                                                </Link>
                                                 <td>{data.user}</td>
                                                 <td>{data.created}</td>
                                                 <td>{data.hits}</td>
-                                                <td><b>수정</b></td>
+                                                <td>
+                                                    <button class="btn btn-danger btn-circle" onClick={() => handleAlert()}>
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
                                                 </tr>
                                             ))
                                         }

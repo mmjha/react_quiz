@@ -5,12 +5,12 @@ function Nav() {
     return (
     <div>
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <Link class="sidebar-brand d-flex align-items-center justify-content-center" to="/" >
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">LucyHye</div>
-            </a>
+            </Link>
             <hr class="sidebar-divider my-0"></hr>
             <li class="nav-item active">
                 <Link to="/dashboard" className="nav-link">

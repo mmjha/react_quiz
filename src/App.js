@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/Login';
 import Pages from './components/Pages';
 import './templates/css/sb-admin-2.min.css';
+// import './templates/scss/_buttons.scss';
 import './templates/vendor/fontawesome-free/css/all.min.css';
 import './templates/vendor/datatables/dataTables.bootstrap4.min.css';
 
@@ -24,5 +25,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
