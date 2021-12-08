@@ -5,14 +5,19 @@ import { getPostOne } from '../reducers/post';
 
 const View = () => {
     const { id } = useParams();
-    const [comment, setComment] = useState('');
+    // const [comment, setComment] = useState('');
     const dispatch = useDispatch();
     const result = useSelector((state) => state.post) || {};
-
     useEffect(() => {
         dispatch(getPostOne(id));
         // dispatch(getUser(page, limit));
     }, []);
+
+    const test = () => {
+        result.data.comment_set.map(data => {
+            console.log(data.id)
+        })
+    }
 
     return (
         <div class="container mt-5">
@@ -40,39 +45,55 @@ const View = () => {
                 <section class="mb-5">
                     <div class="card bg-light">
                         <div class="card-body">
+                            댓글 ({ result.data.comment_count || 0 })
                             <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                {
+                                    result.data.comment_set && result.data.comment_set.map(data => (
+                                        <div class="d-flex mb-4">
+                                        {
+                                            data.parent_comment_id == null ?
+                                            <div class="d-flex mb-4">
+                                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                                    <div class="ms-4">
+                                                        <div class="fw-bold">
+                                                            댓글
+                                                            { data.username }
+                                                            { data.content }
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div>
+                                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                                    <div class="ms-3">
+                                                        <div class="fw-bold">
+                                                            대댓글
+                                                            { data.username }
+                                                            { data.content }
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        }
                                         </div>
-                                    </div>
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            When you put money directly to a problem, it makes a good headline.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                </div>
-                            </div>
+                                    ))
+                                }
                         </div>
                     </div>
                 </section>
             </div>
+                        
+                                            {/* //     <div class="ms-3">
+                                            //     <div class="fw-bold">1{ data.username }</div> 
+                                            //     { data.content }
+                                            // </div>
+                                            // :
+                                            // <div class="d-flex mb-4">
+                                            //     <div class="ms-3">
+                                            //         <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            //         <div class="fw-bold">2{ data.username }</div> 
+                                            //         { data.content }
+                                            //     </div> 
+                                            // </div> */}
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">Categories</div>

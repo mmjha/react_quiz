@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { getPost } from '../reducers/post';
 import ReactPaginate from 'react-paginate';
 import CustomAlert from './modal/customAlert';
-import Page from './View';
 
 function Admin() {
 
