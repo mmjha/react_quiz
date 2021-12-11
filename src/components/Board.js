@@ -5,7 +5,7 @@ import { getPost } from '../reducers/post';
 import ReactPaginate from 'react-paginate';
 import CustomAlert from './modal/customAlert';
 
-function Admin() {
+function Boards() {
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
@@ -13,7 +13,7 @@ function Admin() {
 
 
     const dispatch = useDispatch();
-    const result = useSelector((state) => state.post.data) || {};
+    const post = useSelector((state) => state.post.data) || {};
 
     const handlePageChange = (select) => {
         setPage(select.selected + 1)
@@ -31,6 +31,7 @@ function Admin() {
 
     useEffect(() => {
         dispatch(getPost(page, limit));
+        // dispatch(getComment(id, page, limit))
     }, []);
     
     return (
@@ -41,7 +42,7 @@ function Admin() {
                     {/* <button class="">글 작성</button> */}
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">게시글 목록({ result.count || 0 })</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">게시글 목록({ post.count || 0 })</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -58,7 +59,7 @@ function Admin() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        { result.data && result.data.map(data =>
+                                        { post.data && post.data.map(data =>
                                             (
                                                 <tr>
                                                 <td>{data.id}</td>
@@ -97,7 +98,7 @@ function Admin() {
                         // breakLabel="..."
                         breakClassName="page-item"
                         breakLinkClassName="page-link"
-                        pageCount={result.total_page || 0}
+                        pageCount={post.total_page || 0}
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
                         onPageChange={handlePageChange}
@@ -109,4 +110,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Board;
