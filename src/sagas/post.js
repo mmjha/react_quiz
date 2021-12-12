@@ -10,6 +10,8 @@ const GET_POST_SUCCESS = "GET_POST_SUCCESS";
 const GET_POST_FAILURE = "GET_POST_FAILURE";
 const GET_POST_ONE_REQUEST = "GET_POST_ONE_REQUEST";
 const GET_POST_ONE_SUCCESS = "GET_POST_ONE_SUCCESS";
+const GET_POST_COMMENT_REQUEST = "GET_POST_COMMENT_REQUEST";
+const GET_POST_COMMENT_SUCCESS = "GET_POST_COMMENT_SUCCESS";
 
 
 function getPostListApi(params) {
@@ -25,6 +27,15 @@ function getPostListApi(params) {
 function getPostOneApi(params) {
   let token = localStorage.getItem('access_token');
   return axios.get(`http://localhost:8001/api/board/post/${params.id}/`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+}
+
+function getPostCommentApi(params) {
+  let token = localStorage.getItem('access_token');
+  return axios.get(`http://localhost:8001/api/board/post/${params.id}/comments/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     }
@@ -49,6 +60,9 @@ function* getPost(action) {
         api = getPostOneApi;
         type = GET_POST_ONE_SUCCESS ;
         break;
+      case GET_POST_COMMENT_REQUEST:
+        api = getPostCommentApi;
+        type = GET_POST_COMMENT_SUCCESS;
     }
     const result = yield call(api, action.params);
     yield put({ type: type, data: result.data });
@@ -58,7 +72,10 @@ function* getPost(action) {
 }
 
 function* watchGetPost() {
-  yield takeLatest([GET_POST_REQUEST, GET_POST_ONE_REQUEST], getPost);
+  yield takeLatest([
+    GET_POST_REQUEST, 
+    GET_POST_ONE_REQUEST, 
+    GET_POST_COMMENT_REQUEST], getPost);
 }
 
 export default function* postSaga() {

@@ -5,7 +5,7 @@ import { getPost } from '../reducers/post';
 import ReactPaginate from 'react-paginate';
 import CustomAlert from './modal/customAlert';
 
-function Boards() {
+function Board() {
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
