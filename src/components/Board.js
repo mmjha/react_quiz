@@ -14,6 +14,7 @@ function Board() {
 
     const dispatch = useDispatch();
     const post = useSelector((state) => state.post.data) || {};
+    // const comment = useSelector((state) => state.comment.data) || {};
 
     const handlePageChange = (select) => {
         setPage(select.selected + 1)
@@ -31,7 +32,7 @@ function Board() {
 
     useEffect(() => {
         dispatch(getPost(page, limit));
-        // dispatch(getComment(id, page, limit))
+        dispatch(getComment(id, page, limit))
     }, []);
     
     return (
