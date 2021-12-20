@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { getComment } from '../reducers/comment';
 import { getPostOne } from '../reducers/post';
 
 const View = () => {
     const { id } = useParams();
-    // const [comment, setComment] = useState('');
+    const { page, setPage } = useState();
+    const { limit, setLimit } = useState();
+
     const dispatch = useDispatch();
-    const result = useSelector((state) => state.post) || {};
+    const post = useSelector((state) => state.post) || {};
+    const comment = useSelector((state) => state.comment) || {};
+
     useEffect(() => {
         dispatch(getPostOne(id));
-        // dispatch(getUser(page, limit));
+        dispatch(getComment(id, page, limit))
     }, []);
-
-    const test = () => {
-        result.data.comment_set.map(data => {
-            console.log(data.id)
-        })
-    }
 
     return (
         <div class="container mt-5">
@@ -25,15 +24,15 @@ const View = () => {
             <div class="col-lg-8">
                 <article>
                     <header class="mb-4">
-                        <h1 class="fw-bolder mb-1">{ result.data && result.data.title }</h1>
+                        <h1 class="fw-bolder mb-1">{ post.data && post.data.title }</h1>
                         {/* <div class="text-muted fst-italic mb-2">Posted on January 1, 2021 by Start Bootstrap</div> */}
-                        <div class="text-muted fst-italic mb-2">{ result.data && result.data.created}</div>
+                        <div class="text-muted fst-italic mb-2">{ post.data && post.data.created}</div>
                         <div class="badge bg-secondary text-decoration-none link-light">Web Design</div>
                         <div class="badge bg-secondary text-decoration-none link-light">Freebies</div>
                     </header>
                     <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
                     <section class="mb-5">
-                        <p className="fs-5 mb-4">{ result.data && result.data.content }</p>
+                        <p className="fs-5 mb-4">{ post.data && post.data.content }</p>
                         {/* <p class="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
                         <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
                         <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
@@ -45,37 +44,37 @@ const View = () => {
                 <section class="mb-5">
                     <div class="card bg-light">
                         <div class="card-body">
-                            댓글 ({ result.data.comment_count || 0 })
-                            <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                            댓글 ({ post.data.comment_count || 0 })
+                            {/* <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form> */}
                                 {
-                                    result.data.comment_set && result.data.comment_set.map(data => (
-                                        <div class="d-flex mb-4">
-                                        {
-                                            data.parent_comment_id == null ?
-                                            <div class="d-flex mb-4">
-                                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-4">
-                                                        <div class="fw-bold">
-                                                            댓글
-                                                            { data.username }
-                                                            { data.content }
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            :
-                                            <div>
-                                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">
-                                                            대댓글
-                                                            { data.username }
-                                                            { data.content }
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        }
-                                        </div>
-                                    ))
+                                    // post.data.comment_set && post.data.comment_set.map(data => (
+                                    //     <div class="d-flex mb-4">
+                                    //     {
+                                    //         data.parent_comment_id == null ?
+                                    //         <div class="d-flex mb-4">
+                                    //             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    //                 <div class="ms-4">
+                                    //                     <div class="fw-bold">
+                                    //                         댓글
+                                    //                         { data.username }
+                                    //                         { data.content }
+                                    //                     </div>
+                                    //             </div>
+                                    //         </div>
+                                    //         :
+                                    //         <div>
+                                    //             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    //                 <div class="ms-3">
+                                    //                     <div class="fw-bold">
+                                    //                         대댓글
+                                    //                         { data.username }
+                                    //                         { data.content }
+                                    //                     </div>
+                                    //                 </div>
+                                    //         </div>
+                                    //     }
+                                    //     </div>
+                                    // ))
                                 }
                         </div>
                     </div>
@@ -101,16 +100,13 @@ const View = () => {
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
+                                    {
+                                        post.data && post.data.tag && post.data.tag.map(tag =>
+                                            {
+                                                return <li><a href="#!">{tag}</a></li>
+                                            }
+                                        )
+                                    }
                                 </ul>
                             </div>
                         </div>

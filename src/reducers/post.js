@@ -1,13 +1,10 @@
 import produce from 'immer';
 
-// export const LIST = "USER/LIST";
 const GET_POST_REQUEST = "GET_POST_REQUEST";
 const GET_POST_SUCCESS = "GET_POST_SUCCESS";
 const GET_POST_FAILURE = "GET_POST_FAILURE";
 const GET_POST_ONE_REQUEST = "GET_POST_ONE_REQUEST";
 const GET_POST_ONE_SUCCESS = "GET_POST_ONE_SUCCESS";
-const GET_POST_COMMENT_REQUEST = "GET_POST_COMMENT_REQUEST";
-const GET_POST_COMMENT_SUCCESS = "GET_POST_COMMENT_SUCCESS";
 
 export const getPost = (page, limit) => ({ 
   type: GET_POST_REQUEST,
@@ -22,16 +19,6 @@ export const getPostOne = (id) => ({
   type: GET_POST_ONE_REQUEST,
   params: {
     id: id
-  },
-  data: {}
-})
-
-export const getPostComment = (id, page, limit) => ({
-  type: GET_POST_COMMENT_REQUEST,
-  params: {
-    id: id,
-    page: page,
-    limit: limit
   },
   data: {}
 })
@@ -55,12 +42,6 @@ const post = (state = initalState, action) =>
         draft.data = action.data
         break;
       case GET_POST_ONE_SUCCESS:
-        draft.data = action.data
-        break;
-      case GET_POST_COMMENT_REQUEST:
-        draft.data = action.data
-        break;
-      case GET_POST_COMMENT_SUCCESS:
         draft.data = action.data
         break;
 

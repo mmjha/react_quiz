@@ -32,7 +32,6 @@ function Board() {
 
     useEffect(() => {
         dispatch(getPost(page, limit));
-        dispatch(getComment(id, page, limit))
     }, []);
     
     return (
