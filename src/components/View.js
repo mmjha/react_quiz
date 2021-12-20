@@ -11,8 +11,8 @@ const View = () => {
 
     const dispatch = useDispatch();
     const post = useSelector((state) => state.post) || {};
-    const comment = useSelector((state) => state.comment) || {};
-
+    const comment = useSelector((state) => state.comment.data) || [];
+    console.log(comment)
     useEffect(() => {
         dispatch(getPostOne(id));
         dispatch(getComment(id, page, limit))
@@ -47,6 +47,15 @@ const View = () => {
                             댓글 ({ post.data.comment_count || 0 })
                             {/* <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form> */}
                                 {
+                                    comment && comment.map(data => {
+                                        return <div class="d-flex mb-4">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                                <div class="ms-4">
+                                                    {data.username}
+                                                    {data.content}
+                                                </div>
+                                        </div>
+                                    })
                                     // post.data.comment_set && post.data.comment_set.map(data => (
                                     //     <div class="d-flex mb-4">
                                     //     {

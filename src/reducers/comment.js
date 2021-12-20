@@ -10,13 +10,13 @@ export const getComment = (id, page, limit) => ({
     page: page,
     limit: limit
   },
-  data: {}
+  data: []
 })
 
 const initalState = {
   page : 1,
   limit : 10,
-  data : {}
+  data : []
 };
 
 const comment = (state = initalState, action) => 
