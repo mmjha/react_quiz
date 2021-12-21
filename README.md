@@ -3,7 +3,6 @@
 2. token 관리 middleware 필요
 3. webpack 
 4. 소스 정리
-5. 그 
 
 # Getting Started with Create React App
 
