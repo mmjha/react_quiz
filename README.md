@@ -1,3 +1,10 @@
+# TODO
+1. 퍼블리싱 정리 ex) class -> className, 불필요 페이지 제거
+2. token 관리 middleware 필요
+3. webpack 
+4. 소스 정리
+5. 그 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
