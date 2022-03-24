@@ -23,7 +23,7 @@ function Pages() {
         <div id="wrapper"> 
             <Router>
                 <Nav />
-                <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content-wrapper" className="d-flex flex-column">
                 <Top />
                 <div id="content"></div>
                     <HandleRoutes />

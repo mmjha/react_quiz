@@ -21,17 +21,17 @@ function Admin() {
     }, []);
     
     return (
-        <div class="container-fluid">
-        {/* <div class="container"> */}
-                    <h1 class="h3 mb-2 text-gray-800">관리자 페이지</h1>
-                    <p class="mb-4">사용자를 관리합니다</p>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">사용자 목록({ result.count || 0 })</h6>
+        <div className="container-fluid">
+        {/* <div className="container"> */}
+                    <h1 className="h3 mb-2 text-gray-800">관리자 페이지</h1>
+                    <p className="mb-4">사용자를 관리합니다</p>
+                    <div className="card shadow mb-4">
+                        <div className="card-header py-3">
+                            <h6 className="m-0 font-weight-bold text-primary">사용자 목록({ result.count || 0 })</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div className="card-body">
+                            <div className="table-responsive">
+                                <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>

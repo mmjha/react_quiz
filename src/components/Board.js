@@ -35,18 +35,18 @@ function Board() {
     }, []);
     
     return (
-        <div class="container-fluid">
-        {/* <div class="container"> */}
-                    <h1 class="h3 mb-2 text-gray-800">게시판</h1>
-                    <p class="mb-4">글을 작성합니다</p>
-                    {/* <button class="">글 작성</button> */}
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">게시글 목록({ post.count || 0 })</h6>
+        <div className="container-fluid">
+        {/* <div className="container"> */}
+                    <h1 className="h3 mb-2 text-gray-800">게시판</h1>
+                    <p className="mb-4">글을 작성합니다</p>
+                    {/* <button className="">글 작성</button> */}
+                    <div className="card shadow mb-4">
+                        <div className="card-header py-3">
+                            <h6 className="m-0 font-weight-bold text-primary">게시글 목록({ post.count || 0 })</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div className="card-body">
+                            <div className="table-responsive">
+                                <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -74,8 +74,8 @@ function Board() {
                                                 <td>{data.created}</td>
                                                 <td>{data.hits}</td>
                                                 <td>
-                                                    <button class="btn btn-danger btn-circle" onClick={() => handleAlert()}>
-                                                        <i class="fas fa-trash"></i>
+                                                    <button className="btn btn-danger btn-circle" onClick={() => handleAlert()}>
+                                                        <i className="fas fa-trash"></i>
                                                     </button>
                                                 </td>
                                                 </tr>
